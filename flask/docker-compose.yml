@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mysql:
+    container_name: mysqldb
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
+    ports:
+      - "3306:3306"
+    image: mysqldb
+    restart: always
+    networks:
+      - mynetwork
+
+  flask:
+    container_name: flask
+    build:
+      context: .
+      dockerfile: Dockerfile.flask
+    depends_on:
+      - mysql
+    ports:
+      - "5000:5000"
+    image: flask
+    restart: always
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge

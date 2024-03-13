@@ -1,0 +1,25 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>lista</title>
+    </head>
+    <body>
+        <table border ="3">
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Age</td>
+                <td>Email</td>
+            </tr>
+            {% for k in lista %}
+            <tr>
+                <td>{{ k[0] }}</td>
+                <td>{{ k[1] }}</td>
+                <td>{{ k[2] }}</td>
+                <td>{{ k[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
