@@ -39,8 +39,8 @@ def delete(id):
     mydb.commit()
     return render_template('index.html')
 
-@app.route('/att/<int:id>',methods=['GET','POST'])
-def att(id):
+@app.route('/Update/<int:id>',methods=['GET','POST'])
+def update(id):
     mycursor.execute("SELECT * FROM pytable") 
     lista=mycursor.fetchall()
     if request.method == 'POST':
@@ -51,7 +51,7 @@ def att(id):
         mycursor.execute(command,(name,age,email,id))
         mydb.commit()
         return render_template('index.html')
-    return render_template('att.html',lista=lista)
+    return render_template('update.html',lista=lista)
 
 
 if __name__ == "__main__":
