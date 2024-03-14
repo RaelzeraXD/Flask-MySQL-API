@@ -39,7 +39,7 @@ def delete(id):
     mydb.commit()
     return render_template('index.html')
 
-@app.route('/Update/<int:id>',methods=['GET','POST'])
+@app.route('/update/<int:id>',methods=['GET','POST'])
 def update(id):
     mycursor.execute("SELECT * FROM pytable") 
     lista=mycursor.fetchall()
