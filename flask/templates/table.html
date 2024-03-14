@@ -11,6 +11,8 @@
                 <td>Name</td>
                 <td>Age</td>
                 <td>Email</td>
+                <td>Delete</td>
+                <td>Att</td>
             </tr>
             {% for k in lista %}
             <tr>
@@ -18,8 +20,11 @@
                 <td>{{ k[1] }}</td>
                 <td>{{ k[2] }}</td>
                 <td>{{ k[3] }}</td>
+                <td><a href="/delete/{{ k[0] }}">X</a></td>
+                <td><a href="/att/{{ k[0] }}">att</a></td>             
             </tr>
             {% endfor %}
         </table>
+        <a href="/">Back</a>
     </body>
 </html>

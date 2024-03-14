@@ -14,26 +14,45 @@ mycursor = mydb.cursor()
 def index():
     return render_template("index.html")
 
-@app.route('/registration')
+@app.route('/registration',methods=['GET','POST'])
 def registration():
-    return render_template("registration.html")
-
-@app.route('/registering', methods=['GET','POST'])
-def registering():
     if request.method == 'POST':
         name = request.form.get('name')
         age = request.form.get('age')
         email = request.form.get('email')
-    command='INSERT INTO pytable (name,age,email) VALUES (%s , %s, %s)'
-    mycursor.execute(command,(name,age,email))
-    mydb.commit()
-    return redirect('/')
+        command='INSERT INTO pytable (name,age,email) VALUES (%s , %s, %s)'
+        mycursor.execute(command,(name,age,email))
+        mydb.commit()
+        return render_template('index.html')
+    return render_template("registration.html")
 
 @app.route('/table', methods=['GET'])
 def table():
     mycursor.execute("SELECT * FROM pytable") 
     lista=mycursor.fetchall()
     return render_template('table.html',lista=lista)
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    command='Delete from pytable where id = %s'
+    mycursor.execute(command,(id,))
+    mydb.commit()
+    return render_template('index.html')
+
+@app.route('/att/<int:id>',methods=['GET','POST'])
+def att(id):
+    mycursor.execute("SELECT * FROM pytable") 
+    lista=mycursor.fetchall()
+    if request.method == 'POST':
+        name = request.form.get('name')
+        age = request.form.get('age')
+        email = request.form.get('email')
+        command = 'UPDATE pytable SET name = %s, age = %s,email = %s WHERE id = %s'
+        mycursor.execute(command,(name,age,email,id))
+        mydb.commit()
+        return render_template('index.html')
+    return render_template('att.html',lista=lista)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
