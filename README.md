@@ -9,11 +9,16 @@ allowing users to perform CRUD operations on a database through HTTP requests
 * docker-compose up
 ### EndPoints
 1. **GET /getallusers**
-
 2. **GET /getuserbyid/ID**
+* Desc: Get the user identified by their `ID`, which must be replaced with an integer.
 3. **POST /createuser**
+* Desc: Create a new user
+* Body request: "name" "age" "email"
 4. **PATCH /updateuser/ID**
+* Desc: Update the user identified by their `ID`, which must be replaced with an integer.
+* Body request: "name" "age" "email" any param that you want to modify
 5. **DELETE /deleteuser/ID**
+  * Desc: Delete the user identified by their `ID`, which must be replaced with an integer.
 
 # Python
 * git clone https://github.com/RaelzeraXD/restful-api
