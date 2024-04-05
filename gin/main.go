@@ -10,8 +10,8 @@ var db *gorm.DB
 
 type Product struct {
 	gorm.Model
-	Name string `json:"name"`
-	Age  uint  	`json:"age"`
+	Name  string `json:"name"`
+	Age   uint   `json:"age"`
 	Email string `json:"email"`
 }
 
@@ -32,7 +32,7 @@ func getbyid(c *gin.Context) {
 	c.JSON(200, gin.H{"user": user})
 }
 
-func createproduct(c *gin.Context) {
+func createuser(c *gin.Context) {
 	var newproduct Product
 
 	if err := c.BindJSON(&newproduct); err != nil {
@@ -43,7 +43,7 @@ func createproduct(c *gin.Context) {
 	c.IndentedJSON(200, newproduct)
 }
 
-func updateproduct(c *gin.Context) {
+func updateuser(c *gin.Context) {
 	id := c.Param("id")
 
 	// get the data from req body
@@ -59,12 +59,12 @@ func updateproduct(c *gin.Context) {
 	c.JSON(200, gin.H{"user": user})
 }
 
-func deleteproduct(c *gin.Context) {
+func deleteuser(c *gin.Context) {
 	id := c.Param("id")
 
 	db.Delete(&Product{}, id)
 
-	c.JSON(200 ,gin.H{"message": "user deleted"})
+	c.JSON(200, gin.H{"message": "user deleted"})
 }
 
 func main() {
@@ -80,10 +80,10 @@ func main() {
 	db.AutoMigrate(&Product{})
 
 	router := gin.Default()
-	router.GET("/", getall)
-	router.GET("/:id", getbyid)
-	router.POST("/", createproduct)
-	router.PATCH("/:id", updateproduct)
-	router.DELETE("/:id", deleteproduct)
+	router.GET("/getallusers", getall)
+	router.GET("/getuserbyid/:id", getbyid)
+	router.POST("/createuser", createuser)
+	router.PATCH("/updateuser:id", updateuser)
+	router.DELETE("/deleteuser/:id", deleteuser)
 	router.Run("0.0.0.0:8080")
 }
