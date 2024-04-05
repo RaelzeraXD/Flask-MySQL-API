@@ -3,8 +3,8 @@ from flask import Flask ,render_template,redirect,request
 
 mydb = mysql.connector.connect(
     host='mysqldb',
-    user='user',
-    password='abc123',
+    user='root',
+    password='pass',
     database='pydb',
 )
 app = Flask(__name__)

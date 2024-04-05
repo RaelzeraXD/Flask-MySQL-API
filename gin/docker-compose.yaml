@@ -1,0 +1,29 @@
+version: "3"
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: dbDockerfile
+    ports:
+    - 3306:3306
+    container_name: gormdb
+    image: gormdb
+    restart: always
+    networks: 
+      - rede
+
+  gin:
+    build:
+      context: .
+      dockerfile: ginDockerfile
+    ports:
+    - 8080:8080
+    container_name: gin
+    image: gin
+    restart: always
+    networks: 
+      - rede
+
+networks:
+  rede:
+    driver: bridge
