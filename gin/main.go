@@ -83,7 +83,7 @@ func main() {
 	router.GET("/getallusers", getall)
 	router.GET("/getuserbyid/:id", getbyid)
 	router.POST("/createuser", createuser)
-	router.PATCH("/updateuser:id", updateuser)
+	router.PATCH("/updateuser/:id", updateuser)
 	router.DELETE("/deleteuser/:id", deleteuser)
 	router.Run("0.0.0.0:8080")
 }
