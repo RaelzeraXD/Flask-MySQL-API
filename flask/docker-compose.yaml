@@ -6,8 +6,8 @@ services:
       dockerfile: dbDockerfile
     ports:
       - 3306:3306
-    container_name: mysqldb
-    image: mysqldb
+    container_name: mysqlflask
+    image: mysqlflask
     restart: always
     networks:
       - rede
