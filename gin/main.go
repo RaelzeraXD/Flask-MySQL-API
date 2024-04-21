@@ -8,14 +8,19 @@ import (
 
 var db *gorm.DB
 
-type Product struct {
+type User struct {
 	gorm.Model
 	Name string `json:"name"`
 	Age  uint   `json:"age"`
 }
 
+func welcome(c *gin.Context) {
+	message := "Welcome to my gin rest api, the operations are available in the following endpoints /users /users/:id /create /update/:id /delete/:id"
+	c.JSON(200, message)
+}
+
 func getall(c *gin.Context) {
-	var users []Product
+	var users []User
 
 	db.Find(&users)
 
@@ -23,7 +28,7 @@ func getall(c *gin.Context) {
 }
 
 func getbyid(c *gin.Context) {
-	var user Product
+	var user User
 
 	id := c.Param("id")
 	db.First(&user, id)
@@ -32,28 +37,28 @@ func getbyid(c *gin.Context) {
 }
 
 func createuser(c *gin.Context) {
-	var newproduct Product
+	var newuser User
 
-	if err := c.BindJSON(&newproduct); err != nil {
-		return
+	if err := c.BindJSON(&newuser); err != nil {
+		return 
 	}
-	db.Create(&Product{Name: newproduct.Name, Age: newproduct.Age})
+	db.Create(&User{Name: newuser.Name, Age: newuser.Age})
 
-	c.IndentedJSON(200, newproduct)
+	c.IndentedJSON(200, newuser)
 }
 
 func updateuser(c *gin.Context) {
 	id := c.Param("id")
 
 	// get the data from req body
-	var body Product
+	var body User
 	c.Bind(&body)
 
-	// find the product that we are updating
-	var user Product
+	// find the User that we are updating
+	var user User
 	db.First(&user, id)
 
-	db.Model(&user).Updates(&Product{Name: body.Name, Age: body.Age})
+	db.Model(&user).Updates(&User{Name: body.Name, Age: body.Age})
 
 	c.JSON(200, gin.H{"user": user})
 }
@@ -61,7 +66,7 @@ func updateuser(c *gin.Context) {
 func deleteuser(c *gin.Context) {
 	id := c.Param("id")
 
-	db.Delete(&Product{}, id)
+	db.Delete(&User{}, id)
 
 	c.JSON(200, gin.H{"message": "user deleted"})
 }
@@ -76,13 +81,14 @@ func main() {
 	}
 
 	// Migrate the schema to mysql
-	db.AutoMigrate(&Product{})
+	db.AutoMigrate(&User{})
 
-	router := gin.Default()
-	router.GET("/users", getall)
-	router.GET("/users/:id", getbyid)
-	router.POST("/createuser", createuser)
-	router.PATCH("/updateuser/:id", updateuser)
-	router.DELETE("/deleteuser/:id", deleteuser)
-	router.Run("0.0.0.0:8080")
+	app := gin.Default()
+	app.GET("/", welcome)
+	app.GET("/users", getall)
+	app.GET("/users/:id", getbyid)
+	app.POST("/create", createuser)
+	app.PATCH("/update/:id", updateuser)
+	app.DELETE("/delete/:id", deleteuser)
+	app.Run("0.0.0.0:8080")
 }

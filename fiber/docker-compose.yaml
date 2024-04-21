@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports:
+    - 27017:27017
+    networks:
+      - rede
+
+  fiber:
+    build: .
+    image: fiber
+    container_name: fiber
+    restart: always
+    ports:
+    - 8080:8080
+    networks:
+      - rede
+
+networks:
+  rede:
+    driver: bridge

@@ -9,7 +9,7 @@ database through HTTP requests
 * Desc: Returns all users
 3. **GET /users/ID**
 * Desc: Returns a single user
-3. **POST /createuser**
+3. **POST /create**
 * Desc: Create a new user
 * input:
 ```
@@ -18,7 +18,7 @@ database through HTTP requests
     "age": "22"
 }
 ```
-4. **PATCH /updateuser/ID**
+4. **PATCH /update/ID**
 * Desc: Update the user identified by their `ID`
 * input: name and/or age that you want to modify
 ```
@@ -27,7 +27,7 @@ database through HTTP requests
     "age": "22"
 }
 ```
-5. **DELETE /deleteuser/ID**
+5. **DELETE /delete/ID**
   * Desc: Delete the user identified by their `ID`
 # Go(Gin + Mysql)
 * git clone https://github.com/RaelzeraXD/restful-api
