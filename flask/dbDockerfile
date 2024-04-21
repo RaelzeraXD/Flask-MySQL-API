@@ -1,8 +1,0 @@
-FROM mysql
-
-ENV MYSQL_DATABASE=pydb
-ENV MYSQL_ROOT_PASSWORD=pass
-
-COPY createdb.sql /docker-entrypoint-initdb.d/
-
-EXPOSE 3306

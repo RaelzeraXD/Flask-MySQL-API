@@ -10,9 +10,8 @@ var db *gorm.DB
 
 type Product struct {
 	gorm.Model
-	Name  string `json:"name"`
-	Age   uint   `json:"age"`
-	Email string `json:"email"`
+	Name string `json:"name"`
+	Age  uint   `json:"age"`
 }
 
 func getall(c *gin.Context) {
@@ -38,7 +37,7 @@ func createuser(c *gin.Context) {
 	if err := c.BindJSON(&newproduct); err != nil {
 		return
 	}
-	db.Create(&Product{Name: newproduct.Name, Age: newproduct.Age, Email: newproduct.Email})
+	db.Create(&Product{Name: newproduct.Name, Age: newproduct.Age})
 
 	c.IndentedJSON(200, newproduct)
 }
@@ -54,7 +53,7 @@ func updateuser(c *gin.Context) {
 	var user Product
 	db.First(&user, id)
 
-	db.Model(&user).Updates(&Product{Name: body.Name, Age: body.Age, Email: body.Email})
+	db.Model(&user).Updates(&Product{Name: body.Name, Age: body.Age})
 
 	c.JSON(200, gin.H{"user": user})
 }
@@ -80,8 +79,8 @@ func main() {
 	db.AutoMigrate(&Product{})
 
 	router := gin.Default()
-	router.GET("/getallusers", getall)
-	router.GET("/getuserbyid/:id", getbyid)
+	router.GET("/users", getall)
+	router.GET("/users/:id", getbyid)
 	router.POST("/createuser", createuser)
 	router.PATCH("/updateuser/:id", updateuser)
 	router.DELETE("/deleteuser/:id", deleteuser)
