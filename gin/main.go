@@ -40,7 +40,7 @@ func createuser(c *gin.Context) {
 	var newuser User
 
 	if err := c.BindJSON(&newuser); err != nil {
-		return 
+		return
 	}
 	db.Create(&User{Name: newuser.Name, Age: newuser.Age})
 
@@ -88,7 +88,7 @@ func main() {
 	app.GET("/users", getall)
 	app.GET("/users/:id", getbyid)
 	app.POST("/create", createuser)
-	app.PATCH("/update/:id", updateuser)
+	app.PUT("/update/:id", updateuser)
 	app.DELETE("/delete/:id", deleteuser)
 	app.Run("0.0.0.0:8080")
 }

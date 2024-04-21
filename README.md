@@ -18,7 +18,7 @@ database through HTTP requests
     "age": "22"
 }
 ```
-4. **PATCH /update/ID**
+4. **PUT /update/ID**
 * Desc: Update the user identified by their `ID`
 * input: name and/or age that you want to modify
 ```
