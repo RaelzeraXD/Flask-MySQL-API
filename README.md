@@ -5,17 +5,30 @@ database through HTTP requests
 ### prerequisites
 - [Docker](https://www.docker.com/get-started): Docker is required to run the application in a container.
 ### EndPoints
-1. **GET /getallusers**
-2. **GET /getuserbyid/ID**
-* Desc: Get the user identified by their `ID`, which must be replaced with an integer.
+1. **GET /users**
+* Desc: Returns all users
+3. **GET /users/ID**
+* Desc: Returns a single user
 3. **POST /createuser**
 * Desc: Create a new user
-* Body json request: "name" "age"
+* input:
+```
+{
+    "name": "israel",
+    "age": "22"
+}
+```
 4. **PATCH /updateuser/ID**
-* Desc: Update the user identified by their `ID`, which must be replaced with an integer.
-* Body json request: "name" and/or "age"
+* Desc: Update the user identified by their `ID`
+* input: name and/or age that you want to modify
+```
+{
+    "name": "israel",
+    "age": "22"
+}
+```
 5. **DELETE /deleteuser/ID**
-  * Desc: Delete the user identified by their `ID`, which must be replaced with an integer.
+  * Desc: Delete the user identified by their `ID`
 # Go(Gin + Mysql)
 * git clone https://github.com/RaelzeraXD/restful-api
 * cd restful-api/gin
