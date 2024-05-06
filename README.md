@@ -21,12 +21,6 @@ database through HTTP requests
 4. **PUT /update/ID**
 * Desc: Update the user identified by their `ID`
 * input: name and/or age that you want to modify
-```
-{
-    "name": "israel",
-    "age": "22"
-}
-```
 5. **DELETE /delete/ID**
   * Desc: Delete the user identified by their `ID`
 # Go(Gin + Mysql)
