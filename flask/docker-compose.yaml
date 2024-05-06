@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo:4.4-focal
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports:
+    - 27017:27017
+    networks:
+      - rede
+
+  flask:
+    build: .
+    image: flask
+    container_name: flask
+    restart: always
+    ports:
+    - 8080:8080
+    networks:
+      - rede
+
+networks:
+  rede:
+    driver: bridge
