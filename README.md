@@ -31,7 +31,7 @@ A RESTful API built with Go(Gin + Mysql | Fiber + MongoDB) and Python(Flask + Mo
 * docker-compose up
 # Python(Django + Mysql)
 * git clone https://github.com/RaelzeraXD/Restful_Api
-* cd Restful_Api/flask
+* cd Restful_Api/django
 * docker-compose up
 # Python(Flask + MongoDB)
 * git clone https://github.com/RaelzeraXD/Restful_Api
