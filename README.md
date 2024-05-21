@@ -1,7 +1,5 @@
 # Restful_Api
-A RESTful API built with python(Flask + MongoDB | Django + Mysql) and go(Gin + Mysql |
-Fiber + MongoDB) running in docker, allowing users to perform CRUD operations on a
-database through HTTP requests
+A RESTful API built with Go(Gin + Mysql | Fiber + MongoDB) and Python(Flask + MongoDB | Django + Mysql) running in docker, allowing users to perform CRUD operations on a database through HTTP requests.
 ### prerequisites
 - [Docker](https://www.docker.com/get-started): Docker is required to run the application in a container.
 ### EndPoints
@@ -15,7 +13,7 @@ database through HTTP requests
 ```
 {
     "name": "israel",
-    "age": "22"
+    "age": 22
 }
 ```
 4. **PUT /update/ID**
@@ -24,18 +22,18 @@ database through HTTP requests
 5. **DELETE /delete/ID**
   * Desc: Delete the user identified by their `ID`
 # Go(Gin + Mysql)
-* git clone https://github.com/RaelzeraXD/restful-api
-* cd restful-api/gin
+* git clone https://github.com/RaelzeraXD/Restful_Api
+* cd Restful_Api/gin
 * docker-compose up
 # Go(Fiber + MongoDB)
-* git clone https://github.com/RaelzeraXD/restful-api
-* cd restful-api/fiber
+* git clone https://github.com/RaelzeraXD/Restful_Api
+* cd Restful_Api/fiber
 * docker-compose up
 # Python(Django + Mysql)
-* git clone https://github.com/RaelzeraXD/restful-api
-* cd restful-api/flask
+* git clone https://github.com/RaelzeraXD/Restful_Api
+* cd Restful_Api/flask
 * docker-compose up
 # Python(Flask + MongoDB)
-* git clone https://github.com/RaelzeraXD/restful-api
-* cd restful-api/flask
+* git clone https://github.com/RaelzeraXD/Restful_Api
+* cd Restful_Api/flask
 * docker-compose up

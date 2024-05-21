@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: djangodb
+    restart: always
+    ports:
+    - 3306:3306
+    networks:
+      - rede
+      
+  django:
+    depends_on:
+      - mysql
+    build: .
+    image: django
+    container_name: django
+    restart: always
+    ports:
+    - 8000:8000
+    networks:
+      - rede
+
+networks:
+  rede:
+    driver: bridge
