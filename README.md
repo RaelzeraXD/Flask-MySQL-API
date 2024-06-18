@@ -1,8 +1,11 @@
-# Restful_Api
-A RESTful API built with Go(Gin + Mysql | Fiber + MongoDB) and Python(Flask + MongoDB | Django + Mysql) running in docker, allowing users to perform CRUD operations on a database through HTTP requests.
-### prerequisites
+# RESTful API
+This project demonstrates a RESTful API implementation in both Python and Go with MySQL and MongoDB. The API uses JWT tokens for authentication, with two implementations utilizing RabbitMQ as a message broker. Swagger is integrated for API documentation and better visualization of endpoints.
+## Prerequisites
 - [Docker](https://www.docker.com/get-started): Docker is required to run the application in a container.
-### EndPoints
+
+## Usage
+Once the application is running, you can access the API endpoints as described below. Swagger documentation is available at /swagger or /docs depending on the framework used.
+## EndPoints
 1. **GET /users**
 * Desc: Returns all users
 3. **GET /users/ID**
@@ -21,19 +24,27 @@ A RESTful API built with Go(Gin + Mysql | Fiber + MongoDB) and Python(Flask + Mo
 * input: name and/or age that you want to modify
 5. **DELETE /delete/ID**
   * Desc: Delete the user identified by their `ID`
-# Go(Gin + Mysql)
-* git clone https://github.com/RaelzeraXD/Restful_Api
-* cd Restful_Api/gin
+
+## Installation
+## Go(Gin + Mysql)
+* git clone https://github.com/RaelzeraXD/api
+* cd api/gin
 * docker-compose up
-# Go(Fiber + MongoDB)
-* git clone https://github.com/RaelzeraXD/Restful_Api
-* cd Restful_Api/fiber
+## Go(Fiber + MongoDB)
+* git clone https://github.com/RaelzeraXD/api
+* cd api/fiber
 * docker-compose up
-# Python(Django + Mysql)
-* git clone https://github.com/RaelzeraXD/Restful_Api
-* cd Restful_Api/django
+## Python(Django + Mysql)
+* git clone https://github.com/RaelzeraXD/api
+* cd api/django
 * docker-compose up
-# Python(Flask + MongoDB)
-* git clone https://github.com/RaelzeraXD/Restful_Api
-* cd Restful_Api/flask
+## Python(Flask + MongoDB)
+* git clone https://github.com/RaelzeraXD/api
+* cd api/flask
 * docker-compose up
+
+### Contributing
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
+
+### License
+This project is licensed under the MIT License.
