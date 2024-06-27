@@ -2,10 +2,10 @@ FROM golang:1.22-alpine AS build
 
 WORKDIR /usr/src/app
 
-COPY go.mod go.sum main.go ./
+COPY . .
 
 RUN go mod tidy
-RUN go build main.go
+RUN go build ./cmd/main.go
 
 EXPOSE 8080
 

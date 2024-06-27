@@ -1,21 +1,19 @@
 version: "3"
 services:
   mysql:
-    build:
-      context: .
-      dockerfile: dbDockerfile
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: gormdb
     ports:
     - 3306:3306
     container_name: gormdb
-    image: gormdb
     restart: always
     networks: 
       - rede
 
   gin:
-    build:
-      context: .
-      dockerfile: ginDockerfile
+    build: .
     ports:
     - 8080:8080
     container_name: gin
