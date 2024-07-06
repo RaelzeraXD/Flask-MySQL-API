@@ -4,10 +4,10 @@ services:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: pass
-      MYSQL_DATABASE: gormdb
+      MYSQL_DATABASE: gindb
     ports:
     - 3306:3306
-    container_name: gormdb
+    container_name: gindb
     restart: always
     networks: 
       - rede

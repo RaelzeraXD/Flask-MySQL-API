@@ -12,5 +12,6 @@ EXPOSE 8080
 FROM scratch
 
 COPY --from=build /usr/src/app/main ./main
+COPY --from=build /usr/src/app/.env .
 
 CMD ["./main"]

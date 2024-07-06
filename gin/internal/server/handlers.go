@@ -6,6 +6,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// to avoid load env variables every time when call to database
+var db = database.Connect()
+
 func Welcome(c *gin.Context) {
 	message := "Welcome to my gin rest api, the operations are available in the following endpoints /users /users/:id /create /update/:id /delete/:id"
 	c.JSON(200, message)
@@ -14,7 +17,7 @@ func Welcome(c *gin.Context) {
 func Getall(c *gin.Context) {
 	var users []models.User
 
-	database.Connect().Find(&users)
+	db.Find(&users)
 
 	c.JSON(200, gin.H{"users": users})
 }
@@ -23,7 +26,7 @@ func Getbyid(c *gin.Context) {
 	var user models.User
 
 	id := c.Param("id")
-	database.Connect().First(&user, id)
+	db.First(&user, id)
 
 	c.JSON(200, gin.H{"user": user})
 }
@@ -34,7 +37,7 @@ func Createuser(c *gin.Context) {
 	if err := c.BindJSON(&newuser); err != nil {
 		return
 	}
-	database.Connect().Create(&models.User{Name: newuser.Name, Age: newuser.Age})
+	db.Create(&models.User{Name: newuser.Name, Age: newuser.Age})
 
 	c.IndentedJSON(200, newuser)
 }
@@ -48,9 +51,9 @@ func Updateuser(c *gin.Context) {
 
 	// find the User that we are updating
 	var user models.User
-	database.Connect().First(&user, id)
+	db.First(&user, id)
 
-	database.Connect().Model(&user).Updates(&models.User{Name: body.Name, Age: body.Age})
+	db.Model(&user).Updates(&models.User{Name: body.Name, Age: body.Age})
 
 	c.JSON(200, gin.H{"user": user})
 }
@@ -58,7 +61,7 @@ func Updateuser(c *gin.Context) {
 func Deleteuser(c *gin.Context) {
 	id := c.Param("id")
 
-	database.Connect().Delete(&models.User{}, id)
+	db.Delete(&models.User{}, id)
 
 	c.JSON(200, gin.H{"message": "user deleted"})
 }
